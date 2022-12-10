@@ -20,7 +20,7 @@ export const fetchAsyncMovies = createAsyncThunk(
   }
 );
 export const fetchAsyncShows = createAsyncThunk(
-  "movies/fetchAsyncMovies",
+  "movies/fetchAsyncShows",
   async () => {
     const seriesText = "Harry";
     try {

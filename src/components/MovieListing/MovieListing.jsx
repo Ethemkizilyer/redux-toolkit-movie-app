@@ -11,9 +11,21 @@ const MovieListing = () => {
   console.log(movies);
 let renderMovies,
   renderShows = "";
+
 renderMovies=(movies?.Response === "True" ? (movies.Search.map((movie,index)=>{
  return <MovieCard key={index}  movie={movie}/>
 })) : (<div className="movies-error"> <h3>ethem</h3></div>));
+renderShows =
+  shows?.Response === "True" ? (
+    shows.Search.map((show, index) => {
+      return <MovieCard key={index} show={show} />;
+    })
+  ) : (
+    <div className="shows-error">
+      {" "}
+      <h3>ethem</h3>
+    </div>
+  );
 
   return (
   <div className="movie-wrapper">
