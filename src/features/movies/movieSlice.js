@@ -1,17 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { data } from "../../data";
+
 
 export const fetchAsyncMovies = createAsyncThunk(
   "movies/fetchAsyncMovies",
-  async () => {
-    const movieText = "Harry";
-    console.log(data);
+  async (term) => {
+
+
     try {
-      
-      // const { data } = await axios.get(
-      //   `http://www.omdbapi.com/?apikey=f09c43b8&s=${movieText}`
-      // );
+      const { data } = await axios.get(
+        `http://www.omdbapi.com/?apikey=f09c43b8&s=${term}`
+      );
 
       console.log(data);
       return data;
@@ -24,12 +23,12 @@ export const fetchAsyncMovies = createAsyncThunk(
 );
 export const fetchAsyncShows = createAsyncThunk(
   "movies/fetchAsyncShows",
-  async () => {
-    const seriesText = "Harry";
+  async (term) => {
     try {
-      // const { data } = await axios.get(
-      //   `http://www.omdbapi.com/?apikey=f09c43b&s=${seriesText}&type=series`
-      // );
+      console.log(term);
+      const { data } = await axios.get(
+        `http://www.omdbapi.com/?apikey=f09c43b8&s=${term}&type=series`
+      );
 
       console.log(data);
       return data;
@@ -45,9 +44,9 @@ export const fetchAsyncMovieOrShowDetail = createAsyncThunk(
   async (id) => {
 
     try {
-      // const { data } = await axios.get(
-      //   `http://www.omdbapi.com/?apikey=f09c43b&i=${id}&Plot=full`
-      // );
+      const { data } = await axios.get(
+        `http://www.omdbapi.com/?apikey=f09c43b8&i=${id}&Plot=full`
+      );
 
       console.log(data);
       return data;
@@ -60,9 +59,9 @@ export const fetchAsyncMovieOrShowDetail = createAsyncThunk(
 );
 
 const initialState = {
-  movies: [],
-  shows: [],
-  selectMovieOrShow: [],
+  movies: {},
+  shows: {},
+  selectMovieOrShow: {},
 };
 
 const movieSlice = createSlice({
