@@ -1,14 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { data } from "../../data";
 
 export const fetchAsyncMovies = createAsyncThunk(
   "movies/fetchAsyncMovies",
   async () => {
     const movieText = "Harry";
+    console.log(data);
     try {
-      const { data } = await axios.get(
-        `http://www.omdbapi.com/?apikey=f09c43b7&s=${movieText}`
-      );
+      
+      // const { data } = await axios.get(
+      //   `http://www.omdbapi.com/?apikey=f09c43b8&s=${movieText}`
+      // );
 
       console.log(data);
       return data;
@@ -24,9 +27,27 @@ export const fetchAsyncShows = createAsyncThunk(
   async () => {
     const seriesText = "Harry";
     try {
-      const { data } = await axios.get(
-        `http://www.omdbapi.com/?apikey=f09c43b7&s=${seriesText}&type=series`
-      );
+      // const { data } = await axios.get(
+      //   `http://www.omdbapi.com/?apikey=f09c43b&s=${seriesText}&type=series`
+      // );
+
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.log(error.message);
+    }
+
+    //  getData()
+  }
+);
+export const fetchAsyncMovieOrShowDetail = createAsyncThunk(
+  "movies/fetchAsyncMovieOrShowDetail",
+  async (id) => {
+
+    try {
+      // const { data } = await axios.get(
+      //   `http://www.omdbapi.com/?apikey=f09c43b&i=${id}&Plot=full`
+      // );
 
       console.log(data);
       return data;
@@ -40,16 +61,17 @@ export const fetchAsyncShows = createAsyncThunk(
 
 const initialState = {
   movies: [],
-  shows: {},
+  shows: [],
+  selectMovieOrShow: [],
 };
 
 const movieSlice = createSlice({
   name: "movies",
   initialState,
   reducers: {
-    addMovies: (state, { payload }) => {
-      state.movies = payload;
-    },
+    removeSelectedMovieOrShow:(state)=>{
+      state.selectMovieOrShow={};
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -65,12 +87,16 @@ const movieSlice = createSlice({
       .addCase(fetchAsyncShows.fulfilled, (state, { payload }) => {
         return { ...state, shows: payload };
       })
+      .addCase(fetchAsyncMovieOrShowDetail.fulfilled, (state, { payload }) => {
+        return { ...state, selectMovieOrShow: payload };
+      });
   },
 });
 
-export const { addMovies } = movieSlice.actions;
+export const { removeSelectedMovieOrShow } = movieSlice.actions;
 
 export const getAllMovies = (state) => state.movies.movies;
 export const getAllShows = (state) => state.movies.shows;
+export const getSelectedMovieOrShow = (state) => state.movies.selectMovieOrShow;
 
 export default movieSlice.reducer;
