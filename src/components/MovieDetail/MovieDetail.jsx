@@ -54,23 +54,23 @@ const MovieDetail = () => {
             <div className="movie-info">
               <div>
                 <span>Director</span>
-                <span>{data.Director}</span>
+                <span>: {data.Director}</span>
               </div>
               <div>
                 <span>Stars</span>
-                <span>{data.Actors}</span>
+                <span>: {data.Actors}</span>
               </div>
               <div>
                 <span>Genres</span>
-                <span>{data.Genre}</span>
+                <span>: {data.Genre}</span>
               </div>
               <div>
                 <span>Languages</span>
-                <span>{data.Language}</span>
+                <span>: {data.Language}</span>
               </div>
               <div>
                 <span>Awards</span>
-                <span>{data.Awards}</span>
+                <span>: {data.Awards}</span>
               </div>
             </div>
           </div>
