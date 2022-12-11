@@ -4,6 +4,11 @@ export const Settings = {
   speed: 500,
   slidesToShow: 6,
   slidesToScroll: 3,
+  autoplay: true,
+  autoplaySpeed: 5000,
+  infinite: true,
+  arrows: false,
+  adaptiveHeight: true,
   responsive: [
     {
       breakpoint: 1500,

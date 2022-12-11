@@ -19,14 +19,16 @@ function App() {
   return (
     <div className="app">
       <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
-        
         <BrowserRouter>
-        <GlobalStyles />
+          <GlobalStyles />
           <ToastContainer />
           <Header theme={theme} setTheme={setTheme} />
           <div className="container">
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route
+                path="/"
+                element={<Home theme={theme} setTheme={setTheme} />}
+              />
               <Route path="/movie/:imdbID" element={<MovieDetail />} />
               <Route path="*" element={<PageNotFound />} />
             </Routes>

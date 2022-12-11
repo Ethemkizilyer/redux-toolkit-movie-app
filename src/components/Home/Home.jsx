@@ -4,10 +4,10 @@ import { useDispatch } from 'react-redux'
 import {  fetchAsyncMovies, fetchAsyncShows } from '../../features/movies/movieSlice'
 import MovieListing from '../MovieListing/MovieListing'
 
-const Home = () => {
+const Home = ({theme,setTheme}) => {
 const dispatch=useDispatch()
-const movieText="Harry"
-const showText="Friends"
+const movieText="Matrix"
+const showText="Family"
 
 useEffect(()=>{
 dispatch(fetchAsyncMovies(movieText));
@@ -19,11 +19,10 @@ dispatch(fetchAsyncShows(showText));
 
   return (
     <div>
-    <div className="banner-img"></div>
-      <MovieListing/>
-    
+      <div className="banner-img"></div>
+      <MovieListing theme={theme} setTheme={setTheme} />
     </div>
-  )
+  );
 }
 
 export default Home
