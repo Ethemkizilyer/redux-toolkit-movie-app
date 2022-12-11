@@ -9,7 +9,7 @@ export const fetchAsyncMovies = createAsyncThunk(
 
     try {
       const { data } = await axios.get(
-        `http://www.omdbapi.com/?apikey=f09c43b8&s=${term}`
+        `http://www.omdbapi.com?apikey=f09c43b8&s=${term}`
       );
 
       // console.log(data);
@@ -27,7 +27,7 @@ export const fetchAsyncShows = createAsyncThunk(
     try {
       // console.log(term);
       const { data } = await axios.get(
-        `http://www.omdbapi.com/?apikey=f09c43b8&s=${term}&type=series`
+        `http://www.omdbapi.com?apikey=f09c43b8&s=${term}&type=series`
       );
 
       // console.log(data);
@@ -45,7 +45,7 @@ export const fetchAsyncMovieOrShowDetail = createAsyncThunk(
 
     try {
       const { data } = await axios.get(
-        `http://www.omdbapi.com/?apikey=f09c43b8&i=${id}&Plot=full`
+        `http://www.omdbapi.com?apikey=f09c43b8&i=${id}&Plot=full`
       );
 
       // console.log(data);
