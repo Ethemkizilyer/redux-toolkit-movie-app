@@ -15,7 +15,7 @@ const MovieDetail = () => {
   const { imdbID } = useParams();
   const dispatch = useDispatch();
   const data = useSelector(getSelectedMovieOrShow);
-  console.log(imdbID);
+  // console.log(imdbID);
 
   // console.log(show);
 
@@ -25,7 +25,7 @@ const MovieDetail = () => {
       dispatch(removeSelectedMovieOrShow());
     }
   }, [dispatch, imdbID]);
-  console.log(gec);
+  // console.log(gec);
   return (
     <div className="movie-section">
       {Object.keys(data).length === 0 ? (

@@ -34,7 +34,15 @@ const Header = ({ setTheme ,theme}) => {
   return (
     <div className="header">
       <div className="logo">
-        <Link style={{fontSize:"2rem",color:`${theme == "dark" ? "red" : "orange"} `}} to="/">Movie App</Link>
+        <Link
+          style={{
+            fontSize: "2rem",
+            color: `${theme == "dark" ? "red" : "orange"} `,
+          }}
+          to="/"
+        >
+          Movie App
+        </Link>
       </div>
       <div className="search-bar">
         <form onSubmit={submitHandler}>
@@ -53,9 +61,19 @@ const Header = ({ setTheme ,theme}) => {
 
       <div className="user-image">
         <div>
-          <button onClick={toggleTheme}>
-            {theme === "light" && <i className="fa fa-moon fa-2x"></i>}
-            {theme === "dark" && <i className="fa fa-sun fa-2x"></i>}
+          <button style={{ border: "none" }} onClick={toggleTheme}>
+            {theme === "light" && (
+              <i
+                style={{ backgroundColor: "#E2E2E2" }}
+                className="fa fa-moon fa-2x"
+              ></i>
+            )}
+            {theme === "dark" && (
+              <i
+                style={{ color: "yellow", backgroundColor: "#363537" }}
+                className="fa fa-sun fa-2x"
+              ></i>
+            )}
           </button>
         </div>
         <img src={user} alt="" />

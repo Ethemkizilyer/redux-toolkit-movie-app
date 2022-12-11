@@ -12,7 +12,7 @@ export const fetchAsyncMovies = createAsyncThunk(
         `http://www.omdbapi.com/?apikey=f09c43b8&s=${term}`
       );
 
-      console.log(data);
+      // console.log(data);
       return data;
     } catch (error) {
       console.log(error.message);
@@ -25,12 +25,12 @@ export const fetchAsyncShows = createAsyncThunk(
   "movies/fetchAsyncShows",
   async (term) => {
     try {
-      console.log(term);
+      // console.log(term);
       const { data } = await axios.get(
         `http://www.omdbapi.com/?apikey=f09c43b8&s=${term}&type=series`
       );
 
-      console.log(data);
+      // console.log(data);
       return data;
     } catch (error) {
       console.log(error.message);
@@ -48,7 +48,7 @@ export const fetchAsyncMovieOrShowDetail = createAsyncThunk(
         `http://www.omdbapi.com/?apikey=f09c43b8&i=${id}&Plot=full`
       );
 
-      console.log(data);
+      // console.log(data);
       return data;
     } catch (error) {
       console.log(error.message);
