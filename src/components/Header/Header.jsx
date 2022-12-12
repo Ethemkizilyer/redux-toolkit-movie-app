@@ -1,10 +1,15 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {  fetchAsyncMovies, fetchAsyncShows } from "../../features/movies/movieSlice";
-import user from "../../images/user.png"
+
 import "./Header.scss"
 import { toast } from "react-toastify";
+import {Modale} from "../Modal/Modal";
+
+
+
+
 
 const Header = ({ setTheme ,theme}) => {
   const toggleTheme = () => {
@@ -17,7 +22,7 @@ const Header = ({ setTheme ,theme}) => {
       setTheme("light");
     }
   };
-
+const {user}= useSelector((state)=>state.auth)
   const [term, setTerm] = useState("");
   const dispatch = useDispatch();
   const submitHandler = (e) => {
@@ -25,8 +30,13 @@ const Header = ({ setTheme ,theme}) => {
     if (term === "") {
       return toast.error("Please enter search term!");
     }
-    dispatch(fetchAsyncMovies(term));
+    else if(!user.username){
+      return toast.error("Please login or register!");
+    }else{
+      dispatch(fetchAsyncMovies(term));
     dispatch(fetchAsyncShows(term));
+    }
+    
     setTerm("");
     console.log(term);
   };
@@ -60,8 +70,10 @@ const Header = ({ setTheme ,theme}) => {
       </div>
 
       <div className="user-image">
-        <div>
-          <button style={{ border: "none" }} onClick={toggleTheme}>
+        
+        <Modale/>
+      <div>
+          <button className="den" style={{ border: "none" }} onClick={toggleTheme}>
             {theme === "light" && (
               <i
                 style={{ backgroundColor: "#E2E2E2" }}
@@ -76,7 +88,6 @@ const Header = ({ setTheme ,theme}) => {
             )}
           </button>
         </div>
-        <img src={user} alt="" />
       </div>
     </div>
   );

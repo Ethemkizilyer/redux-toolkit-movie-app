@@ -9,13 +9,10 @@ const dispatch=useDispatch()
 const movieText="Matrix"
 const showText="Family"
 
-useEffect(()=>{
-dispatch(fetchAsyncMovies(movieText));
-dispatch(fetchAsyncShows(showText));
-
-
-
-},[dispatch])
+useEffect(() => {
+  dispatch(fetchAsyncMovies(movieText));
+  dispatch(fetchAsyncShows(showText));
+}, [showText]);
 
   return (
     <div>

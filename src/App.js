@@ -11,11 +11,19 @@ import { ToastContainer } from "react-toastify";
 import { darkTheme, lightTheme } from "./common/theme";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./common/global";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { userObserver } from "./auth/firebase";
 
 
 function App() {
     const [theme, setTheme] = useState("light");
+
+    let currentUser = useSelector((state) => state.user);
+    const dispatch = useDispatch();
+    useEffect(() => {
+      userObserver(dispatch);
+    }, [currentUser]);
   return (
     <div className="app">
       <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
